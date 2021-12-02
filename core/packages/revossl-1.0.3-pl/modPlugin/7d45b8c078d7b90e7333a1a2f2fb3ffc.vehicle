@@ -1,0 +1,111 @@
+<?php return array (
+  'preserve_keys' => false,
+  'update_object' => true,
+  'unique_key' => 'name',
+  'related_objects' => 
+  array (
+    'PluginEvents' => 
+    array (
+      '663e666dac606bcf37761ecf66480749' => 
+      array (
+        'preserve_keys' => true,
+        'update_object' => false,
+        'unique_key' => 
+        array (
+          0 => 'pluginid',
+          1 => 'event',
+        ),
+        'class' => 'modPluginEvent',
+        'object' => '{"pluginid":6,"event":"OnBeforeManagerPageInit","priority":0,"propertyset":0}',
+        'guid' => '77bbd3facdba30eb3372aa29786d015a',
+        'native_key' => 
+        array (
+          0 => 6,
+          1 => 'OnBeforeManagerPageInit',
+        ),
+        'signature' => 'c73d9f9983900fc4f3c38a9a379fd0c8',
+      ),
+      '9ed0e80361da2da547f61543d1af7b50' => 
+      array (
+        'preserve_keys' => true,
+        'update_object' => false,
+        'unique_key' => 
+        array (
+          0 => 'pluginid',
+          1 => 'event',
+        ),
+        'class' => 'modPluginEvent',
+        'object' => '{"pluginid":6,"event":"OnManagerLoginFormPrerender","priority":0,"propertyset":0}',
+        'guid' => '34a8248d7e609ae10ab50deb38f0584a',
+        'native_key' => 
+        array (
+          0 => 6,
+          1 => 'OnManagerLoginFormPrerender',
+        ),
+        'signature' => '3bc33496399482a326b7c2b5f6544eb4',
+      ),
+      'f0095fa1bce325abb0f86ec0a4eac02e' => 
+      array (
+        'preserve_keys' => true,
+        'update_object' => false,
+        'unique_key' => 
+        array (
+          0 => 'pluginid',
+          1 => 'event',
+        ),
+        'class' => 'modPluginEvent',
+        'object' => '{"pluginid":6,"event":"OnManagerPageInit","priority":0,"propertyset":0}',
+        'guid' => '506116356e538090ddb4404d596a08c9',
+        'native_key' => 
+        array (
+          0 => 6,
+          1 => 'OnManagerPageInit',
+        ),
+        'signature' => '0c82c03cf00245cec21c446984ae0685',
+      ),
+      '7df73a7ea4867f9794564cdc3b455038' => 
+      array (
+        'preserve_keys' => true,
+        'update_object' => false,
+        'unique_key' => 
+        array (
+          0 => 'pluginid',
+          1 => 'event',
+        ),
+        'class' => 'modPluginEvent',
+        'object' => '{"pluginid":6,"event":"OnWebPageInit","priority":0,"propertyset":0}',
+        'guid' => '6cd41a8c07af48552eb2560677b42c1e',
+        'native_key' => 
+        array (
+          0 => 6,
+          1 => 'OnWebPageInit',
+        ),
+        'signature' => '321ba07e1bf1d8eee6f1858b105fd510',
+      ),
+    ),
+  ),
+  'related_object_attributes' => 
+  array (
+    'PluginEvents' => 
+    array (
+      'preserve_keys' => true,
+      'update_object' => false,
+      'unique_key' => 
+      array (
+        0 => 'pluginid',
+        1 => 'event',
+      ),
+    ),
+  ),
+  'namespace' => 'revossl',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => 'ca8349252a4ed37935b165c51896291f',
+  'package' => 'modx',
+  'class' => 'modPlugin',
+  'signature' => '7d45b8c078d7b90e7333a1a2f2fb3ffc',
+  'native_key' => 6,
+  'object' => '{"id":6,"source":0,"property_preprocess":0,"name":"revoSSL","description":"Make the manager and web pages SSL ","editor_type":0,"category":0,"cache_type":0,"plugincode":"\\/*\\n * Title:           RevoSSL\\n * Author:          Joshua Gulledge\\n * Created:         5\\/5\\/2011\\n * Updated:         4\\/11\\/2013\\n * Version:         1.0.1pl\\n * Description:     Allow users to make a page SSL and the Manager SSL\\n * \\n * Based on Evo plugin:\\n * Title:      SSL\\n * Author:     Mark Croxton, mcroxton@hallmark-design.co.uk\\n * Desc:        Plugin triggered OnWebPageInit\\n            Manages switching between https:\\/\\/ and http:\\/\\/ pages\\n            Sets site-wide custom placeholders for secure\\/insecure server paths and base href\\n*\\/\\n$makeSSL = false; \\nswitch($modx->event->name) {\\n    \\/* on the manager load *\\/\\n    case \'OnBeforeManagerPageInit\':\\n    case \'OnManagerPageInit\':\\n    case \'OnManagerLoginFormPrerender\':\\n    \\/\\/case \'OnManagerLoginFormRender\':\\n        \\/**\\n         * Other events: \\n         * OnManagerPageInit\\n         * OnManagerPageInit\\n         * OnManagerLoginFormPrerender\\n         * OnManagerLoginFormRender\\n         * OnBeforeManagerLogin\\n         * OnManagerAuthentication\\n         * OnManagerLogin\\n         *\\/\\n        \\/\\/ get a system setting - revoSSL.manager\\n        $makeSSL = $modx->getOption(\'revoSSL.manager\',$scriptProperties,false);\\n        if ( $makeSSL == \'Yes\' || $makeSSL == \'Y\' ) {\\n            $makeSSL = true;\\n        }\\n        break;\\n    \\/* On web page loads *\\/\\n    case \'OnWebPageInit\':\\n        \\/\\/ if a property set is defined:\\n        $makeSSL = $modx->getOption(\'makeSSL\', $scriptProperties, 0);\\n        if ( $makeSSL == \'Yes\' || $makeSSL == \'Y\' ) {\\n            $makeSSL = true;\\n        }\\n        $id = $modx->resourceIdentifier;\\n        if ( $id > 0 ){\\n            $resource = $modx->getObject(\'modResource\', array(\'id\' => $id ) );\\n            \\/\\/ now if a TV is defined:\\n            if (is_object($resource) ){\\n                \\/\\/ http:\\/\\/forums.modx.com\\/thread\\/83816\\/revossl---pretty-severe-bug\\n                if ($resource->get(\'published\') == false || $resource->get(\'deleted\')) {\\n                    if ( !$modx->hasPermission(\'view_unpublished\') ) {\\n                        return false;\\n                    }\\n                }\\n                \\/\\/ END\\n                $tmpSSL = $resource->getTVValue(\'makeSSL\');\\n                if ( empty($tmpSSL)){\\n                    \\n                } elseif ( $tmpSSL == \'Yes\' || $tmpSSL == \'Y\' || $tmpSSL ) {\\n                    $makeSSL = true;\\n                } else if ( $tmpSSL == \'No\' || $tmpSSL == \'N\' || !$tmpSSL ) {\\n                    $makeSSL = false;\\n                }\\n            }\\n        }\\n            \\n        break;\\n}\\n\\/\\/ is the current page in SSL?\\nif( $_SERVER[\'HTTPS\'] == 1 || $_SERVER[\'HTTPS\'] == \'on\' || $_SERVER[\'SERVER_PORT\'] == 443) {\\n    $ssl = true;\\n} else {\\n    $ssl = false;\\n}\\n$force_redirect = false;\\n$host = $_SERVER[\'HTTP_HOST\'];\\n\\/\\/ force www or no www\\n$force_www = $modx->getOption(\'revoSSL.forceWWW\', $scriptProperties, false);\\nif ( strpos($_SERVER[\'HTTP_HOST\'], \'www.\') === false && $force_www ) {\\n    \\/\\/ no WWW\\n     $host = \'www.\'.$_SERVER[\'HTTP_HOST\'];\\n     $force_redirect = true;\\n}\\n\\n\\/\\/ the current URL of the page\\n$url = $host.$_SERVER[\'REQUEST_URI\'];\\/\\/$_SERVER[\'PHP_SELF\'];\\n\\/\\/ http:\\/\\/rtfm.modx.com\\/display\\/revolution20\\/modX.sendRedirect\\n\\n\\/\\/ switch between http \\/ https if necessary\\nif ( $makeSSL && !$ssl ) {\\n    \\/\\/ if SSL off and we are about to access a secure page then redirect\\n    $modx->sendRedirect(\'https:\\/\\/\'.$url);\\n} elseif (!$makeSSL && $ssl ) {\\n    \\/\\/ if SSL is on and we are about to acccess an unsecure page then redirect\\n    $modx->sendRedirect(\'http:\\/\\/\'.$url);\\n} elseif ( $force_redirect ) {\\n    \\/\\/ if SSL is on and we are about to acccess an unsecure page then redirect\\n    if ( $makeSSL ) {\\n        $modx->sendRedirect(\'https:\\/\\/\'.$url);\\n    } else {\\n        $modx->sendRedirect(\'http:\\/\\/\'.$url);\\n    }\\n}\\n\\nreturn true;","locked":0,"properties":"a:1:{s:7:\\"makeSSL\\";a:6:{s:4:\\"name\\";s:7:\\"makeSSL\\";s:4:\\"desc\\";s:24:\\"Set web pages to http:\\/\\/\\";s:4:\\"type\\";s:13:\\"combo-boolean\\";s:7:\\"options\\";a:0:{}s:5:\\"value\\";s:1:\\"0\\";s:7:\\"lexicon\\";N;}}","disabled":0,"moduleguid":"","static":0,"static_file":"","content":"\\/*\\n * Title:           RevoSSL\\n * Author:          Joshua Gulledge\\n * Created:         5\\/5\\/2011\\n * Updated:         4\\/11\\/2013\\n * Version:         1.0.1pl\\n * Description:     Allow users to make a page SSL and the Manager SSL\\n * \\n * Based on Evo plugin:\\n * Title:      SSL\\n * Author:     Mark Croxton, mcroxton@hallmark-design.co.uk\\n * Desc:        Plugin triggered OnWebPageInit\\n            Manages switching between https:\\/\\/ and http:\\/\\/ pages\\n            Sets site-wide custom placeholders for secure\\/insecure server paths and base href\\n*\\/\\n$makeSSL = false; \\nswitch($modx->event->name) {\\n    \\/* on the manager load *\\/\\n    case \'OnBeforeManagerPageInit\':\\n    case \'OnManagerPageInit\':\\n    case \'OnManagerLoginFormPrerender\':\\n    \\/\\/case \'OnManagerLoginFormRender\':\\n        \\/**\\n         * Other events: \\n         * OnManagerPageInit\\n         * OnManagerPageInit\\n         * OnManagerLoginFormPrerender\\n         * OnManagerLoginFormRender\\n         * OnBeforeManagerLogin\\n         * OnManagerAuthentication\\n         * OnManagerLogin\\n         *\\/\\n        \\/\\/ get a system setting - revoSSL.manager\\n        $makeSSL = $modx->getOption(\'revoSSL.manager\',$scriptProperties,false);\\n        if ( $makeSSL == \'Yes\' || $makeSSL == \'Y\' ) {\\n            $makeSSL = true;\\n        }\\n        break;\\n    \\/* On web page loads *\\/\\n    case \'OnWebPageInit\':\\n        \\/\\/ if a property set is defined:\\n        $makeSSL = $modx->getOption(\'makeSSL\', $scriptProperties, 0);\\n        if ( $makeSSL == \'Yes\' || $makeSSL == \'Y\' ) {\\n            $makeSSL = true;\\n        }\\n        $id = $modx->resourceIdentifier;\\n        if ( $id > 0 ){\\n            $resource = $modx->getObject(\'modResource\', array(\'id\' => $id ) );\\n            \\/\\/ now if a TV is defined:\\n            if (is_object($resource) ){\\n                \\/\\/ http:\\/\\/forums.modx.com\\/thread\\/83816\\/revossl---pretty-severe-bug\\n                if ($resource->get(\'published\') == false || $resource->get(\'deleted\')) {\\n                    if ( !$modx->hasPermission(\'view_unpublished\') ) {\\n                        return false;\\n                    }\\n                }\\n                \\/\\/ END\\n                $tmpSSL = $resource->getTVValue(\'makeSSL\');\\n                if ( empty($tmpSSL)){\\n                    \\n                } elseif ( $tmpSSL == \'Yes\' || $tmpSSL == \'Y\' || $tmpSSL ) {\\n                    $makeSSL = true;\\n                } else if ( $tmpSSL == \'No\' || $tmpSSL == \'N\' || !$tmpSSL ) {\\n                    $makeSSL = false;\\n                }\\n            }\\n        }\\n            \\n        break;\\n}\\n\\/\\/ is the current page in SSL?\\nif( $_SERVER[\'HTTPS\'] == 1 || $_SERVER[\'HTTPS\'] == \'on\' || $_SERVER[\'SERVER_PORT\'] == 443) {\\n    $ssl = true;\\n} else {\\n    $ssl = false;\\n}\\n$force_redirect = false;\\n$host = $_SERVER[\'HTTP_HOST\'];\\n\\/\\/ force www or no www\\n$force_www = $modx->getOption(\'revoSSL.forceWWW\', $scriptProperties, false);\\nif ( strpos($_SERVER[\'HTTP_HOST\'], \'www.\') === false && $force_www ) {\\n    \\/\\/ no WWW\\n     $host = \'www.\'.$_SERVER[\'HTTP_HOST\'];\\n     $force_redirect = true;\\n}\\n\\n\\/\\/ the current URL of the page\\n$url = $host.$_SERVER[\'REQUEST_URI\'];\\/\\/$_SERVER[\'PHP_SELF\'];\\n\\/\\/ http:\\/\\/rtfm.modx.com\\/display\\/revolution20\\/modX.sendRedirect\\n\\n\\/\\/ switch between http \\/ https if necessary\\nif ( $makeSSL && !$ssl ) {\\n    \\/\\/ if SSL off and we are about to access a secure page then redirect\\n    $modx->sendRedirect(\'https:\\/\\/\'.$url);\\n} elseif (!$makeSSL && $ssl ) {\\n    \\/\\/ if SSL is on and we are about to acccess an unsecure page then redirect\\n    $modx->sendRedirect(\'http:\\/\\/\'.$url);\\n} elseif ( $force_redirect ) {\\n    \\/\\/ if SSL is on and we are about to acccess an unsecure page then redirect\\n    if ( $makeSSL ) {\\n        $modx->sendRedirect(\'https:\\/\\/\'.$url);\\n    } else {\\n        $modx->sendRedirect(\'http:\\/\\/\'.$url);\\n    }\\n}\\n\\nreturn true;"}',
+);
